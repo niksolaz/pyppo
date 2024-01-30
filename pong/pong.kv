@@ -1,0 +1,69 @@
+<PongBall>:
+    size: 50, 50 
+    canvas:
+        Color:
+            rgba: 1, 1, 0, 1  # Giallo
+        Ellipse:
+            pos: self.pos
+            size: self.size 
+
+<PongPaddlePlayer1>:
+    size: 25, 200
+    canvas:
+        Color:
+            rgba: 0, 1, 0, 1  # Rosso per il Player 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<PongPaddlePlayer2>:
+    size: 25, 200
+    canvas:
+        Color:
+            rgba: 0, 0, 1, 1  # Blu per il Player 2
+        Rectangle:
+            pos: self.pos
+            size: self.size         
+
+<PongPaddle>:
+    size: 25, 200
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<PongGame>:
+    ball: pong_ball
+    player1: player_left
+    player2: player_right
+    
+    canvas:
+        Rectangle:
+            pos: self.center_x - 5, 0
+            size: 10, self.height
+    
+    Label:
+        font_size: 70  
+        center_x: root.width / 4
+        top: root.top - 50
+        text: "Sinner: " + str(root.player1.score)
+        
+    Label:
+        font_size: 70
+        center_x: root.width * 3 / 4
+        top: root.top - 50
+        text: "Djokovic: " + str(root.player2.score)
+    
+    PongBall:
+        id: pong_ball
+        center: self.parent.center
+        
+    PongPaddlePlayer1:
+        id: player_left
+        x: root.x
+        center_y: root.center_y
+        
+    PongPaddlePlayer2:
+        id: player_right
+        x: root.width - self.width
+        center_y: root.center_y
